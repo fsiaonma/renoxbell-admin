@@ -1,0 +1,1 @@
+"use strict";$(function(){return{init:function(){$("#mainPanel").tabs({border:!1,fit:!0}),$("#mainPanel").tabs("add",{id:"default",title:"系统首页",closable:!1,href:"src/templates/default.html"}),this._bindEvent(),$("#mainPanel").tabs("add",{id:"default",title:"系统首页",closable:!1,href:"src/templates/vedioList.html"})},_bindEvent:function(){}}}().init());

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>视频管理</title>
+    <link rel="stylesheet" type="text/css" href="src/style/vedioList.css" />
+</head>
+	<div id="vedioListToolbar" class="tool-bar">
+    	<div style="margin: 10px 0 10px 0;">
+    		<a id="vedioListAddBtn" href="javascript:void(0);" iconCls="icon-add">上传</a>
+    	</div>
+    </div>
+	<table id="vedioListGrid" style="width: 100%;height: 100%"></table>
+	<div id="vedioListAddDialog" style="display: none;">
+        <form id="vedioListAddForm" method="post" enctype="multipart/form-data">
+            <div style="line-height: 70px; text-align: center;">
+                <table>
+                    <tr style="line-height: 40px;">
+                        <td width="25%" style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">标题：</span></td>
+                        <td width="75%" style="text-align: left;"><input id="vedioListTitle"/></td>
+                    </tr>
+                    <tr style="line-height: 40px;">
+                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">标题(英)：</span></td>
+                        <td style="text-align: left;"><input id="vedioListTitleEn"/></td>
+                    </tr>
+                    <tr style="line-height: 40px;">
+                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">选择视频：</span></td>
+                        <td style="text-align: left;">
+                            <input id="vedioListVedioFile" name="vedioListVedioFile" data-options="prompt: ''"/>
+                        </td>
+                    </tr>
+                    <tr style="line-height: 140px;">
+                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">内容（英）：</span></td>
+                        <td style="text-align: left;"><textarea id="vedioListDescEn" style="vertical-align: middle; width: 300px; height: 100px;"></textarea></td>
+                    </tr>
+                    <tr style="line-height: 140px;">
+                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">内容：</span></td>
+                        <td style="text-align: left;"><textarea id="vedioListDesc" style="vertical-align: middle; width: 300px; height: 100px;"></textarea></td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+</body>
+<footer>
+	<script type="text/javascript" src="src/js/vedioList.js"></script>
+</footer>
+</html>

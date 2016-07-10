@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理</title>
+    <link rel="stylesheet" type="text/css" href="src/style/userList.css" />
+</head>
+	<div id="userListToolbar">
+    	<div style="margin: 10px 0 10px 0;">
+    		<a id="userListAddBtn" href="javascript:void(0);" iconCls="icon-add">新增用户</a>
+    	</div>
+    </div>
+	<table id="userListGrid" style="width: 100%; height: 100%"></table>
+	<div id="userListAddOrEditDialog" style="display: none;">
+        <form id="userListAddOrEditForm" method="post" enctype="multipart/form-data">
+            <div style="line-height: 70px; text-align: center;">
+                <input id="userId" style="display: none;"></input>
+                <table>
+                    <tr style="line-height: 40px;">
+                        <td width="30%" style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">用户登录名：</span></td>
+                        <td width="70%" style="text-align: left;"><input id="userListAccount"/></td>
+                    </tr>
+                    <tr style="line-height: 40px;">
+                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">用户姓名：</span></td>
+                        <td style="text-align: left;"><input id="userListNickName"/></td>
+                    </tr>
+                    <tr style="line-height: 40px;">
+                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">密码：</span></td>
+                        <td style="text-align: left;"><input id="userListPassword"/></td>
+                    </tr>
+                    <tr style="line-height: 40px;">
+                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">确认密码：</span></td>
+                        <td style="text-align: left;"><input id="userListPasswordConfirm"/></td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+</body>
+<footer>
+	<script type="text/javascript" src="src/js/userList.js"></script>
+</footer>
+</html>

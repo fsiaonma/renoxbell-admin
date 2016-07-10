@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>项目管理</title>
+    <link rel="stylesheet" type="text/css" href="src/style/projectList.css" />
+</head>
+	<div id="projectListToolbar">
+    	<div style="margin: 10px 0 10px 0;">
+    		<a id="projectListAddBtn" href="javascript:void(0);" iconCls="icon-add">新增项目</a>
+    	</div>
+    </div>
+	<table id="projectListGrid" style="width: 100%; height: 100%"></table>
+	<div id="projectListAddDialog" style="display: none;">
+        <form id="projectListAddForm" method="post" enctype="multipart/form-data">
+            <div style="line-height: 70px; text-align: center;">
+                <table>
+                    <tr style="line-height: 40px;">
+                        <td width="30%" style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">项目名称：</span></td>
+                        <td width="70%" style="text-align: left;"><input id="projectListName"/></td>
+                    </tr>
+                    <tr style="line-height: 40px;">
+                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">项目名称(英)：</span></td>
+                        <td style="text-align: left;"><input id="projectListNameEn"/></td>
+                    </tr>
+                    <tr style="line-height: 40px;">
+                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">项目地点：</span></td>
+                        <td style="text-align: left;"><input id="projectListPlace"/></td>
+                    </tr>
+                    <tr style="line-height: 40px;">
+                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">项目地点(英)：</span></td>
+                        <td style="text-align: left;"><input id="projectListPlaceEn"/></td>
+                    </tr>
+                    <tr style="line-height: 40px;">
+                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">项目所有者：</span></td>
+                        <td style="text-align: left;"><input id="projectListBelong"/></td>
+                    </tr>
+                    <tr style="line-height: 40px;">
+                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">项目所有者(英)：</span></td>
+                        <td style="text-align: left;"><input id="projectListBelongEn"/></td>
+                    </tr>
+                    <tr style="line-height: 40px;">
+                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">开始日期：</span></td>
+                        <td style="text-align: left;"><input id="projectListStartDate"/></td>
+                    </tr>
+                    <tr style="line-height: 40px;">
+                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">结束日期：</span></td>
+                        <td style="text-align: left;"><input id="projectListEndDate"/></td>
+                    </tr>
+                    <tr style="line-height: 40px;">
+                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">选择图片：</span></td>
+                        <td style="text-align: left;">
+                            <input id="projectListImgFile" name="projectListImgFile" data-options="prompt: ''"/>
+                        </td>
+                    </tr>
+                    <tr style="line-height: 140px;">
+                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">描述：</span></td>
+                        <td style="text-align: left;"><textarea id="projectListDesc" style="vertical-align: middle; width: 300px; height: 100px;"></textarea></td>
+                    </tr>
+                    <tr style="line-height: 140px;">
+                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">描述(英)：</span></td>
+                        <td style="text-align: left;"><textarea id="projectListDescEn" style="vertical-align: middle; width: 300px; height: 100px;"></textarea></td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+</body>
+<footer>
+	<script type="text/javascript" src="src/js/projectList.js"></script>
+</footer>
+</html>
