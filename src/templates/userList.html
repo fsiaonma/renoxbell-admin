@@ -14,23 +14,23 @@
 	<div id="userListAddOrEditDialog" style="display: none;">
         <form id="userListAddOrEditForm" method="post" enctype="multipart/form-data">
             <div style="line-height: 70px; text-align: center;">
-                <input id="userId" style="display: none;"></input>
+                <input id="userId" name="id" style="display: none;"></input>
                 <table>
                     <tr style="line-height: 40px;">
                         <td width="30%" style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">用户登录名：</span></td>
-                        <td width="70%" style="text-align: left;"><input id="userListAccount"/></td>
+                        <td width="70%" style="text-align: left;"><input id="userListUserName" name="username"/></td>
                     </tr>
                     <tr style="line-height: 40px;">
                         <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">用户姓名：</span></td>
-                        <td style="text-align: left;"><input id="userListNickName"/></td>
+                        <td style="text-align: left;"><input id="userListNickName" name="nickname"/></td>
                     </tr>
                     <tr style="line-height: 40px;">
                         <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">密码：</span></td>
-                        <td style="text-align: left;"><input id="userListPassword"/></td>
+                        <td style="text-align: left;"><input id="userListPassword" name="password1"/></td>
                     </tr>
                     <tr style="line-height: 40px;">
                         <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">确认密码：</span></td>
-                        <td style="text-align: left;"><input id="userListPasswordConfirm"/></td>
+                        <td style="text-align: left;"><input id="userListPasswordConfirm" name="password2"/></td>
                     </tr>
                 </table>
             </div>

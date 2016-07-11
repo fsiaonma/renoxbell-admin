@@ -1,13 +1,22 @@
 "use strict";
 
-RA.API = {
-	GET_VEDIO_LIST: "",
-	ADD_VEDIO: "",
-	DEL_VEDIO: "",
+RA.API_SERVER = "http://10.100.137.74:8000/api/";
 
-	GET_BANNER_LIST: "",
-	ADD_BANNER: "",
-	DEL_BANNER: "",
+RA.API = {
+	LOGOUT: "logout",
+
+	GET_NEWS_LIST: "getNewsList",
+	ADD_NEWS: "saveNews",
+	UPDATE_NEWS: "saveNews",
+	DEL_NEWS: "deleteNews",
+
+	GET_VEDIO_LIST: "getVideosList",
+	ADD_VEDIO: "saveVideo",
+	DEL_VEDIO: "deleteVideo",
+
+	GET_BANNER_LIST: "getBannersList",
+	ADD_BANNER: "saveBanner",
+	DEL_BANNER: "deleteBanner",
 
 	GET_MESSAGE: "",
 
@@ -22,8 +31,8 @@ RA.API = {
 	ADD_PROJECT: "",
 	DEL_PROJECT: "",
 
-	GET_USER_LIST: "",
-	ADD_USER: "",
-	UPDATE_USER: "",
-	DEL_USER: ""
+	GET_USER_LIST: "getUserList",
+	ADD_USER: "saveUser",
+	UPDATE_USER: "saveUser",
+	DEL_USER: "deleteUser"
 }

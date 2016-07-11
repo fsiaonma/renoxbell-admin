@@ -16,7 +16,9 @@
   "dependencies": {
     "gulp": "*",
     "gulp-concat": "*",
-    "gulp-uglify": "*"
+    "gulp-uglify": "*",
+    "express": "4.6.1",
+    "body-parser": "~1.0.0"
   },
   "license": "MIT"
 }

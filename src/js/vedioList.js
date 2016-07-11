@@ -25,24 +25,7 @@ $((function() {
                 checkOnSelect: true,
                 selectOnCheck: true,
                 rownumbers: true,
-                // url: RA.API.GET_VEDIO_LIST,
-                data: [{
-                    id: "id1",
-                    param1: 1,
-                    param2: 2,
-                    param3: 3,
-                    param4: 4,
-                    param5: 5,
-                    param6: 6
-                }, {
-                    id: "id2",
-                    param1: 1,
-                    param2: 2,
-                    param3: 3,
-                    param4: 4,
-                    param5: 5,
-                    param6: 6
-                }],
+                url: RA.API.GET_VEDIO_LIST,
                 loadFilter: function(resp) {
                     return resp;
                 },
@@ -53,12 +36,12 @@ $((function() {
                 toolbar: "#vedioListToolbar",
                 columns: [[
                     {field: 'id', title: 'id', width: 40, hidden: true, align: 'center'}, 
-                    {field: "param1", title: "视频标题", width: 150, align:"center"},
-                    {field: "param2", title: "视频标题(英)", width: 150, align: "center"},
-                    {field: "param3", title: "创建时间", width: 150, align: "center"},
-                    {field: "param4", title: "视频路径", width: 250, align: "center"},
-                    {field: "param5", title: "视频描述", width: 200, align: "center"},
-                    {field: "param6", title: "视频描述(英)", width: 200, align: "center"},
+                    {field: "title", title: "视频标题", width: 150, align:"center"},
+                    {field: "titleEn", title: "视频标题(英)", width: 150, align: "center"},
+                    {field: "create_time", title: "创建时间", width: 150, align: "center"},
+                    {field: "file", title: "视频路径", width: 250, align: "center"},
+                    {field: "content", title: "视频描述", width: 200, align: "center"},
+                    {field: "contentEn", title: "视频描述(英)", width: 200, align: "center"},
                     {field: "_operate", title: "操作", align: "center", width: 150, formatter: function(val, row, index) {
                         var html = "";
                         html += "<a href='javascript:;' class='vedioListDelBtn' style='margin: 10px;'>删除</a>";
@@ -86,7 +69,7 @@ $((function() {
                     $("#vedioListAddForm").form("clear");
                 },
                 buttons: [{
-                    text: "确认上传",
+                    text: "确认",
                     algin: "center",
                     iconCls: "icon-ok",
                     handler: function () {
@@ -133,7 +116,7 @@ $((function() {
                             type: "post",
                             url: RA.API.DEL_VEDIO,
                             params: {
-
+                                id: id
                             },
                             successFn: function(resp) {
                                 $("#vedioListGrid").datagrid("reload");

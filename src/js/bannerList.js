@@ -25,18 +25,7 @@ $((function() {
                 checkOnSelect: true,
                 selectOnCheck: true,
                 rownumbers: true,
-                // url: RA.API.GET_BANNER_LIST,
-                data: [{
-                    id: "id1",
-                    param1: 1,
-                    param2: 2,
-                    param3: 3
-                }, {
-                    id: "id2",
-                    param1: 1,
-                    param2: 2,
-                    param3: 3,
-                }],
+                url: RA.API.GET_BANNER_LIST,
                 loadFilter: function(resp) {
                     return resp;
                 },
@@ -47,9 +36,9 @@ $((function() {
                 toolbar: "#bannerListToolbar",
                 columns: [[   
                     {field: 'id', title: 'id', width: 40, hidden: true, align: 'center'}, 
-                    {field: "param1", title: "滚动图片名称", width: 150, align:"center"},
-                    {field: "param2", title: "创建时间", width: 150, align: "center"},
-                    {field: "param3", title: "滚动图片路径", width: 150, align: "center"},
+                    {field: "filename", title: "滚动图片名称", width: 150, align:"center"},
+                    {field: "create_time", title: "创建时间", width: 150, align: "center"},
+                    {field: "file", title: "滚动图片路径", width: 150, align: "center"},
                     {field: "_operate", title: "操作", align: "center", width: 150, formatter: function(val, row, index) {
                         var html = "";
                         html += "<a href='javascript:;' class='bannerListDelBtn' style='margin: 10px;'>删除</a>";
@@ -77,7 +66,7 @@ $((function() {
                     $("#bannerListAddForm").form("clear");
                 },
                 buttons: [{
-                    text: "确认上传",
+                    text: "确认",
                     algin: "center",
                     iconCls: "icon-ok",
                     handler: function () {
@@ -104,7 +93,7 @@ $((function() {
                             type: "post",
                             url: RA.API.DEL_BANNER,
                             params: {
-                                
+                                id: id
                             },
                             successFn: function(resp) {
                                 $("#bannerListGrid").datagrid("reload");

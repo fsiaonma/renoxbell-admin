@@ -10,7 +10,7 @@ RA.NET = {
 
         $.ajax({
             type: type,
-            url: url,
+            url: RA.API_SERVER + url,
             data: params,
             dataType: "json",
             cache: false,
@@ -21,10 +21,18 @@ RA.NET = {
                 RA.loading.hide();
             },
             success: function(resp) {
-                if (typeof successFn === "function") {
-                    successFn(resp);
+                if (resp.status == "success") {
+                    if (typeof successFn === "function") {
+                        successFn(resp);
+                    } else {
+                        console.log("successFn undefine");
+                    }
                 } else {
-                    console.log("successFn undefine");
+                    if (typeof errorFn === "function") {
+                        errorFn(resp);
+                    } else {
+                        console.log("errorFn undefine");
+                    }                     
                 }
             },
             error: function(err) {
@@ -48,17 +56,25 @@ RA.NET = {
         if (!$("#" + formId).form("validate")) return ;
 
         RA.loading.show();
-        $("#" + formId).form("submit", {
-            method: type,
-            url: url,
-            queryParams: params,
-            success: function(resp) {
+        $("#" + formId).ajaxSubmit({
+            type: type,//提交类型
+            dataType: "json",//返回结果格式
+            url: RA.API_SERVER + url,//请求地址
+            data: params,
+            async: true,
+            success: function (resp) {//请求成功后的函数
                 RA.loading.hide();
-                if (typeof successFn === "function") {
-                    successFn(resp);
+                if (resp.status == "success") {
+                    if (typeof successFn === "function") {
+                        successFn(resp);
+                    }
+                } else {
+                    if (typeof errorFn === "function") {
+                        errorFn(err);
+                    }
                 }
             },
-            error: function(err) {
+            error: function (err) {
                 RA.loading.hide();
                 if (typeof errorFn === "function") {
                     errorFn(err);

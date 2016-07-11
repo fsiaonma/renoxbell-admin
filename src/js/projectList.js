@@ -101,7 +101,7 @@ $((function() {
                     $("#projectListAddForm").form("clear");
                 },
                 buttons: [{
-                    text: "确认上传",
+                    text: "确认",
                     algin: "center",
                     iconCls: "icon-ok",
                     handler: function () {
