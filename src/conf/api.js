@@ -18,18 +18,18 @@ RA.API = {
 	ADD_BANNER: "saveBanner",
 	DEL_BANNER: "deleteBanner",
 
-	GET_MESSAGE: "",
+	GET_MESSAGE: "getMsgList",
 
-	GET_ASK_PRICE_LIST: "",
-	EXPORT_ASK_PRICE_LIST: "",
+	GET_ASK_PRICE_LIST: "getAskPriceList",
+	EXPORT_ASK_PRICE_LIST: "exportAskPrice",
 
-	GET_PRODUCT_LIST: "",
-	ADD_PRODUCT: "",
-	DEL_PRODUCT: "",
+	GET_PRODUCT_LIST: "getProductList",
+	ADD_PRODUCT: "saveProduct",
+	DEL_PRODUCT: "deleteProduct",
 
-	GET_PROJECT_LIST: "",
-	ADD_PROJECT: "",
-	DEL_PROJECT: "",
+	GET_PROJECT_LIST: "getProjectList",
+	ADD_PROJECT: "saveProject",
+	DEL_PROJECT: "deleteProject",
 
 	GET_USER_LIST: "getUserList",
 	ADD_USER: "saveUser",

@@ -25,16 +25,10 @@ $((function() {
                 checkOnSelect: true,
                 selectOnCheck: true,
                 rownumbers: true,
-                // url: RA.API.GET_PRODUCT_LIST,
-                data: [{
-                    id: "id1",
-                    param1: 1
-                }, {
-                    id: "id2",
-                    param1: 1
-                }],
+                url: RA.API_SERVER + RA.API.GET_PRODUCT_LIST,
                 loadFilter: function(resp) {
-                    return resp;
+                    var resObj = resp.data;
+                    return resObj;
                 },
                 pagination: true,
                 autoRowHeight: true,
@@ -43,26 +37,26 @@ $((function() {
                 toolbar: "#productListToolbar",
                 columns: [[
                     {field: 'id', title: 'id', width: 40, hidden: true, align: 'center'}, 
-                    {field: "param1", title: "产品名称", width: 200, align:"center"},
-                    {field: "param1", title: "产品名称(英)", width: 200, align: "center"},
-                    {field: "param1", title: "产品类别", width: 200, align:"center"},
-                    {field: "param1", title: "产品类别(英)", width: 200, align:"center"},
-                    {field: "param1", title: "产品描述", width: 200, align:"center"},
-                    {field: "param1", title: "产品描述(英)", width: 200, align:"center"},
-                    {field: "param1", title: "轮播图片1路径", width: 200, align:"center"},
-                    {field: "param1", title: "轮播图片2路径", width: 200, align:"center"},
-                    {field: "param1", title: "轮播图片3路径", width: 200, align:"center"},
-                    {field: "param1", title: "轮播图片4路径", width: 200, align:"center"},
-                    {field: "param1", title: "详情图片1路劲", width: 200, align:"center"},
-                    {field: "param1", title: "详情图片1路劲", width: 200, align:"center"},
-                    {field: "param1", title: "详情图片2路劲", width: 200, align:"center"},
-                    {field: "param1", title: "详情图片2路劲", width: 200, align:"center"},
-                    {field: "param1", title: "详情图片3路劲", width: 200, align:"center"},
-                    {field: "param1", title: "详情图片3路劲", width: 200, align:"center"},
-                    {field: "param1", title: "详情图片4路劲", width: 200, align:"center"},
-                    {field: "param1", title: "详情图片4路劲", width: 200, align:"center"},
-                    {field: "param1", title: "详情图片5路劲", width: 200, align:"center"},
-                    {field: "param1", title: "详情图片5路劲", width: 200, align:"center"},
+                    {field: "name", title: "产品名称", width: 200, align:"center"},
+                    {field: "nameEn", title: "产品名称(英)", width: 200, align: "center"},
+                    {field: "category", title: "产品类别", width: 200, align:"center"},
+                    {field: "categoryEn", title: "产品类别(英)", width: 200, align:"center"},
+                    {field: "desc", title: "产品描述", width: 200, align:"center"},
+                    {field: "descEn", title: "产品描述(英)", width: 200, align:"center"},
+                    {field: "image1", title: "轮播图片1路径", width: 200, align:"center"},
+                    {field: "image2", title: "轮播图片2路径", width: 200, align:"center"},
+                    {field: "image3", title: "轮播图片3路径", width: 200, align:"center"},
+                    {field: "image4", title: "轮播图片4路径", width: 200, align:"center"},
+                    {field: "detailImage1", title: "详情图片1路劲", width: 200, align:"center"},
+                    {field: "detailImageEn1", title: "详情图片1路劲(英)", width: 200, align:"center"},
+                    {field: "detailImage2", title: "详情图片2路劲", width: 200, align:"center"},
+                    {field: "detailImageEn2", title: "详情图片2路劲(英)", width: 200, align:"center"},
+                    {field: "detailImage3", title: "详情图片3路劲", width: 200, align:"center"},
+                    {field: "detailImageEn3", title: "详情图片3路劲(英)", width: 200, align:"center"},
+                    {field: "detailImage4", title: "详情图片4路劲", width: 200, align:"center"},
+                    {field: "detailImageEn4", title: "详情图片4路劲(英)", width: 200, align:"center"},
+                    {field: "detailImage5", title: "详情图片5路劲", width: 200, align:"center"},
+                    {field: "detailImageEn5", title: "详情图片5路劲(英)", width: 200, align:"center"},
                     {field: "_operate", title: "操作", align: "center", width: 200, formatter: function(val, row, index) {
                         var html = "";
                         html += "<a href='javascript:;' class='productListDelBtn' style='margin: 10px;'>删除</a>";
@@ -170,7 +164,7 @@ $((function() {
                                 RA.MSG_TIP.showSuccess("删除产品成功");
                             },
                             errorFn: function(err) {
-                                RA.MSG_TIP.showSuccess("删除产品失败");
+                                RA.MSG_TIP.showSuccess("删除产品失败: " + err.msg? err.msg : "");
                             }
                         });
                     }
@@ -189,7 +183,7 @@ $((function() {
                     RA.MSG_TIP.showSuccess("添加产品成功");
                 },
                 errorFn: function(err) {
-                    RA.MSG_TIP.showError("添加产品失败");
+                    RA.MSG_TIP.showError("添加产品失败: " + err.msg? err.msg : "");
                 }
             });
         }

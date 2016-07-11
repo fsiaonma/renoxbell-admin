@@ -137,7 +137,7 @@ $((function() {
                                 RA.MSG_TIP.showSuccess("删除用户成功");
                             },
                             errorFn: function(err) {
-                                RA.MSG_TIP.showSuccess("删除用户失败");
+                                RA.MSG_TIP.showSuccess("删除用户失败: " + err.msg? err.msg : "");
                             }
                         });  
                     }
@@ -160,7 +160,7 @@ $((function() {
                     RA.MSG_TIP.showSuccess("添加用户成功");
                 },
                 errorFn: function(err) {
-                    RA.MSG_TIP.showError("添加用户失败");
+                    RA.MSG_TIP.showError("添加用户失败: " + err.msg? err.msg : "");
                 }
             });
         },
@@ -176,7 +176,7 @@ $((function() {
                     RA.MSG_TIP.showSuccess("更新用户成功");
                 },
                 errorFn: function(err) {
-                    RA.MSG_TIP.showError("更新用户失败");
+                    RA.MSG_TIP.showError("更新用户失败: " + err.msg? err.msg : "");
                 }
             });
         }

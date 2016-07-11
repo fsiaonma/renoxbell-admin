@@ -12,7 +12,7 @@ $((function() {
              $("#askPriceListExportBtn").linkbutton({
                 width: 100,
                 onClick: function() {
-                    
+                    window.open(RA.API_SERVER + RA.API.EXPORT_ASK_PRICE_LIST);
                 }
             });
         },
@@ -26,34 +26,10 @@ $((function() {
                 selectOnCheck: true,
                 autoRowHeight: true,
                 nowrap : false,
-                // url: RA.API.GET_ASK_PRICE_LIST,
-                data: [{
-                    id: "id1",
-                    param1: 1,
-                    param2: 2,
-                    param3: 3,
-                    param4: 4,
-                    param5: 5,
-                    param6: 6
-                }, {
-                    id: "id2",
-                    param1: 1,
-                    param2: 2,
-                    param3: 3,
-                    param4: 4,
-                    param5: 5,
-                    param6: 6
-                }, {
-                    id: "id1",
-                    param1: 1,
-                    param2: 2,
-                    param3: 3,
-                    param4: 4,
-                    param5: 5,
-                    param6: 6
-                }],
+                url: RA.API_SERVER + RA.API.GET_ASK_PRICE_LIST,
                 loadFilter: function(resp) {
-                    return resp;
+                    var resObj = resp.data;
+                    return resObj;
                 },
                 pagination: true,
                 pageSize: 30,
@@ -61,12 +37,12 @@ $((function() {
                 toolbar: "#askPriceListToolbar",
                 columns: [[   
                     {field: 'id', title: 'id', width: 40, hidden: true, align: 'center'}, 
-                    {field: "param1", title: "询价者姓名", width: 150, align:"center"},
-                    {field: "param2", title: "电子邮件", width: 150, align: "center"},
-                    {field: "param3", title: "电话", width: 150, align: "center"},
-                    {field: "param4", title: "公司名称", width: 150, align: "center"},
-                    {field: "param5", title: "询价时间", width: 150, align: "center"},
-                    {field: "param6", title: "内容", width: 400, align: "center"}
+                    {field: "nickname", title: "询价者姓名", width: 150, align:"center"},
+                    {field: "email", title: "电子邮件", width: 150, align: "center"},
+                    {field: "phone", title: "电话", width: 150, align: "center"},
+                    {field: "company", title: "公司名称", width: 150, align: "center"},
+                    {field: "create_time", title: "询价时间", width: 150, align: "center"},
+                    {field: "content", title: "内容", width: 400, align: "center"}
                 ]],
                 onLoadSuccess: function() {
                     $("#askPriceListGrid").datagrid("resize");

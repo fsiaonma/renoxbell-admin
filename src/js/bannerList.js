@@ -25,9 +25,10 @@ $((function() {
                 checkOnSelect: true,
                 selectOnCheck: true,
                 rownumbers: true,
-                url: RA.API.GET_BANNER_LIST,
+                url: RA.API_SERVER + RA.API.GET_BANNER_LIST,
                 loadFilter: function(resp) {
-                    return resp;
+                    var resObj = resp.data;
+                    return resObj;
                 },
                 pagination: true,
                 autoRowHeight: true,
@@ -38,7 +39,7 @@ $((function() {
                     {field: 'id', title: 'id', width: 40, hidden: true, align: 'center'}, 
                     {field: "filename", title: "滚动图片名称", width: 150, align:"center"},
                     {field: "create_time", title: "创建时间", width: 150, align: "center"},
-                    {field: "file", title: "滚动图片路径", width: 150, align: "center"},
+                    {field: "image", title: "滚动图片路径", width: 150, align: "center"},
                     {field: "_operate", title: "操作", align: "center", width: 150, formatter: function(val, row, index) {
                         var html = "";
                         html += "<a href='javascript:;' class='bannerListDelBtn' style='margin: 10px;'>删除</a>";
@@ -100,7 +101,7 @@ $((function() {
                                 RA.MSG_TIP.showSuccess("删除 banner 成功");
                             },
                             errorFn: function(err) {
-                                RA.MSG_TIP.showSuccess("删除 banner 失败");
+                                RA.MSG_TIP.showSuccess("删除 banner 失败: " + err.msg? err.msg : "");
                             }
                         });
                     }
@@ -119,7 +120,7 @@ $((function() {
                     RA.MSG_TIP.showSuccess("添加 banner 成功");
                 },
                 errorFn: function(err) {
-                    RA.MSG_TIP.showError("添加 banner 失败");
+                    RA.MSG_TIP.showError("添加 banner 失败: " + err.msg? err.msg : "");
                 }
             });
         }

@@ -25,36 +25,10 @@ $((function() {
                 checkOnSelect: true,
                 selectOnCheck: true,
                 rownumbers: true,
-                // url: RA.API.GET_PROJECT_LIST,
-                data: [{
-                    id: "id1",
-                    param1: 1,
-                    param2: 2,
-                    param3: 3,
-                    param4: 4,
-                    param5: 5,
-                    param6: 6,
-                    param7: 7,
-                    param8: 8,
-                    param9: 9,
-                    param10: 10,
-                    param11: 11
-                }, {
-                    id: "id2",
-                    param1: 1,
-                    param2: 2,
-                    param3: 3,
-                    param4: 4,
-                    param5: 5,
-                    param6: 6,
-                    param7: 7,
-                    param8: 8,
-                    param9: 9,
-                    param10: 10,
-                    param11: 11
-                }],
+                url: RA.API_SERVER + RA.API.GET_PROJECT_LIST,
                 loadFilter: function(resp) {
-                    return resp;
+                    var resObj = resp.data;
+                    return resObj;
                 },
                 pagination: true,
                 autoRowHeight: true,
@@ -63,17 +37,17 @@ $((function() {
                 toolbar: "#projectListToolbar",
                 columns: [[   
                     {field: 'id', title: 'id', width: 40, hidden: true, align: 'center'}, 
-                    {field: "param1", title: "项目名称", width: 150, align:"center"},
-                    {field: "param2", title: "项目名称(英)", width: 150, align: "center"},
-                    {field: "param3", title: "项目地点", width: 150, align: "center"},
-                    {field: "param4", title: "项目地点(英)", width: 150, align: "center"},
-                    {field: "param5", title: "项目所有者", width: 150, align: "center"},
-                    {field: "param6", title: "项目所有者(英)", width: 150, align: "center"},
-                    {field: "param7", title: "开始日期", width: 150, align: "center"},
-                    {field: "param8", title: "结束日期", width: 150, align: "center"},
-                    {field: "param9", title: "照片路径", width: 150, align: "center"},
-                    {field: "param10", title: "项目描述", width: 150, align: "center"},
-                    {field: "param11", title: "项目描述(英)", width: 150, align: "center"},
+                    {field: "title", title: "项目名称", width: 150, align:"center"},
+                    {field: "titleEn", title: "项目名称(英)", width: 150, align: "center"},
+                    {field: "address", title: "项目地点", width: 150, align: "center"},
+                    {field: "addressEn", title: "项目地点(英)", width: 150, align: "center"},
+                    {field: "owner", title: "项目所有者", width: 150, align: "center"},
+                    {field: "ownerEn", title: "项目所有者(英)", width: 150, align: "center"},
+                    {field: "start_time", title: "开始日期", width: 150, align: "center"},
+                    {field: "end_time", title: "结束日期", width: 150, align: "center"},
+                    {field: "image", title: "照片路径", width: 150, align: "center"},
+                    {field: "desc", title: "项目描述", width: 150, align: "center"},
+                    {field: "descEn", title: "项目描述(英)", width: 150, align: "center"},
                     {field: "_operate", title: "操作", align: "center", width: 150, formatter: function(val, row, index) {
                         var html = "";
                         html += "<a href='javascript:;' class='projectListDelBtn' style='margin: 10px;'>删除</a>";
@@ -176,14 +150,14 @@ $((function() {
                             type: "post",
                             url: RA.API.DEL_PROJECT,
                             params: {
-                                
+                                id: id
                             },
                             successFn: function(resp) {
                                 $("#projectListGrid").datagrid("reload");
                                 RA.MSG_TIP.showSuccess("删除项目成功");
                             },
                             errorFn: function(err) {
-                                RA.MSG_TIP.showSuccess("删除项目失败");
+                                RA.MSG_TIP.showSuccess("删除项目失败: " + err.msg? err.msg : "");
                             }
                         });
                     }
@@ -202,7 +176,7 @@ $((function() {
                     RA.MSG_TIP.showSuccess("添加项目成功");
                 },
                 errorFn: function(err) {
-                    RA.MSG_TIP.showError("添加项目失败");
+                    RA.MSG_TIP.showError("添加项目失败: " + err.msg? err.msg : "");
                 }
             });
         }

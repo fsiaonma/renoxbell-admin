@@ -25,9 +25,10 @@ $((function() {
                 checkOnSelect: true,
                 selectOnCheck: true,
                 rownumbers: true,
-                url: RA.API.GET_NEWS_LIST,
+                url: RA.API_SERVER + RA.API.GET_NEWS_LIST,
                 loadFilter: function(resp) {
-                    return resp;
+                    var resObj = resp.data;
+                    return resObj;
                 },
                 pagination: true,
                 autoRowHeight: true,
@@ -139,7 +140,7 @@ $((function() {
                                 RA.MSG_TIP.showSuccess("删除新闻成功");
                             },
                             errorFn: function(err) {
-                                RA.MSG_TIP.showSuccess("删除新闻失败");
+                                RA.MSG_TIP.showSuccess("删除新闻失败: " + err.msg? err.msg : "");
                             }
                         });  
                     }
@@ -158,7 +159,7 @@ $((function() {
                     RA.MSG_TIP.showSuccess("发布新闻成功");
                 },
                 errorFn: function(err) {
-                    RA.MSG_TIP.showError("发布新闻失败");
+                    RA.MSG_TIP.showError("发布新闻失败: " + err.msg? err.msg : "");
                 }
             });
         },
@@ -174,7 +175,7 @@ $((function() {
                     RA.MSG_TIP.showSuccess("更新新闻成功");
                 },
                 errorFn: function(err) {
-                    RA.MSG_TIP.showError("更新新闻失败");
+                    RA.MSG_TIP.showError("更新新闻失败: " + err.msg? err.msg : "");
                 }
             });
         }

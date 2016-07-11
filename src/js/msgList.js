@@ -17,38 +17,20 @@ $((function() {
                 autoRowHeight: true,
                 nowrap : false,
                 toolbar: "#msgListToolbar",
-                // url: RA.API.GET_MESSAGE,
-                data: [{
-                    id: "id1",
-                    param1: 1,
-                    param2: 2,
-                    param3: 3,
-                    param4: 4
-                }, {
-                    id: "id2",
-                    param1: 1,
-                    param2: 2,
-                    param3: 3,
-                    param4: 4
-                }, {
-                    id: "id1",
-                    param1: 1,
-                    param2: 2,
-                    param3: 3,
-                    param4: 4
-                }],
+                url: RA.API_SERVER + RA.API.GET_MESSAGE,
                 loadFilter: function(resp) {
-                    return resp;
+                    var resObj = resp.data;
+                    return resObj;
                 },
                 pagination: true,
                 pageSize: 30,
                 method: "get",
                 columns: [[   
                     {field: 'id', title: 'id', width: 40, hidden: true, align: 'center'}, 
-                    {field: "param1", title: "留言人姓名", width: 150, align:"center"},
-                    {field: "param2", title: "电子邮件", width: 150, align: "center"},
-                    {field: "param3", title: "留言时间", width: 150, align: "center"},
-                    {field: "param4", title: "内容", width: 400, align: "center"}
+                    {field: "nickname", title: "留言人姓名", width: 150, align:"center"},
+                    {field: "email", title: "电子邮件", width: 150, align: "center"},
+                    {field: "create_time", title: "留言时间", width: 150, align: "center"},
+                    {field: "content", title: "内容", width: 400, align: "center"}
                 ]],
                 onLoadSuccess: function() {
                     $("#msgListGrid").datagrid("resize");
