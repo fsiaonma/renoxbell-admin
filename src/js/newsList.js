@@ -27,6 +27,7 @@ $((function() {
                 rownumbers: true,
                 url: RA.API_SERVER + RA.API.GET_NEWS_LIST,
                 loadFilter: function(resp) {
+                    RA.NET.logoutFilter(resp);
                     var resObj = resp.data;
                     return resObj;
                 },
@@ -110,10 +111,10 @@ $((function() {
             $("#newsListGrid").parent().on('click', '.newsListEditBtn', function(event) {  
                 var rowDom = $(event.target).closest('tr');
                 var id = rowDom.find('[field=id]').text();
-                var newsTitle = rowDom.find('[field=param1]').text();
-                var newsTitleEn = rowDom.find('[field=param2]').text();
-                var newsDesc = rowDom.find('[field=param2]').text();
-                var newsDescEn = rowDom.find('[field=param2]').text();
+                var newsTitle = rowDom.find('[field=title]').text();
+                var newsTitleEn = rowDom.find('[field=titleEn]').text();
+                var newsDesc = rowDom.find('[field=content]').text();
+                var newsDescEn = rowDom.find('[field=contentEn]').text();
 
                 $("#newsListAddOrEditDialog").dialog("open");
 
@@ -127,7 +128,7 @@ $((function() {
             $("#newsListGrid").parent().on('click', '.newsListDelBtn', function(event) {  
                 var rowDom = $(event.target).closest('tr');
                 var id = rowDom.find('[field=id]').text();
-                $.messager.confirm('删除确认', '确定要删除选中新闻吗？', function(flag) {
+                $.messager.confirm('删除确认', '1确定要删除选中新闻吗？', function(flag) {
                     if (flag) {
                         RA.NET.request({
                             type: "post",
@@ -140,7 +141,7 @@ $((function() {
                                 RA.MSG_TIP.showSuccess("删除新闻成功");
                             },
                             errorFn: function(err) {
-                                RA.MSG_TIP.showSuccess("删除新闻失败: " + err.msg? err.msg : "");
+                                RA.MSG_TIP.showError("删除新闻失败: " + (err.msg? err.msg : ""));
                             }
                         });  
                     }
@@ -159,7 +160,7 @@ $((function() {
                     RA.MSG_TIP.showSuccess("发布新闻成功");
                 },
                 errorFn: function(err) {
-                    RA.MSG_TIP.showError("发布新闻失败: " + err.msg? err.msg : "");
+                    RA.MSG_TIP.showError("发布新闻失败: " + (err.msg? err.msg : ""));
                 }
             });
         },
@@ -175,7 +176,7 @@ $((function() {
                     RA.MSG_TIP.showSuccess("更新新闻成功");
                 },
                 errorFn: function(err) {
-                    RA.MSG_TIP.showError("更新新闻失败: " + err.msg? err.msg : "");
+                    RA.MSG_TIP.showError("更新新闻失败: " + (err.msg? err.msg : ""));
                 }
             });
         }

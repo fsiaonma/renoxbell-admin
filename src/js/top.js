@@ -18,7 +18,7 @@ $((function() {
                             window.location.href = window.location.origin + "/login.html";
                         },
                         errorFn: function(err) {
-                            RA.MSG_TIP.showSuccess("注销失败");
+                            RA.MSG_TIP.showError("注销失败");
                         }
                     });
                 }

@@ -19,6 +19,7 @@ $((function() {
                 toolbar: "#msgListToolbar",
                 url: RA.API_SERVER + RA.API.GET_MESSAGE,
                 loadFilter: function(resp) {
+                    RA.NET.logoutFilter(resp);
                     var resObj = resp.data;
                     return resObj;
                 },

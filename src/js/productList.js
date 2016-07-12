@@ -27,6 +27,7 @@ $((function() {
                 rownumbers: true,
                 url: RA.API_SERVER + RA.API.GET_PRODUCT_LIST,
                 loadFilter: function(resp) {
+                    RA.NET.logoutFilter(resp);
                     var resObj = resp.data;
                     return resObj;
                 },
@@ -157,14 +158,14 @@ $((function() {
                             type: "post",
                             url: RA.API.DEL_PRODUCT,
                             params: {
-                                
+                                id: id
                             },
                             successFn: function(resp) {
                                 $("#productListGrid").datagrid("reload");
                                 RA.MSG_TIP.showSuccess("删除产品成功");
                             },
                             errorFn: function(err) {
-                                RA.MSG_TIP.showSuccess("删除产品失败: " + err.msg? err.msg : "");
+                                RA.MSG_TIP.showError("删除产品失败: " + (err.msg? err.msg : ""));
                             }
                         });
                     }
@@ -183,7 +184,7 @@ $((function() {
                     RA.MSG_TIP.showSuccess("添加产品成功");
                 },
                 errorFn: function(err) {
-                    RA.MSG_TIP.showError("添加产品失败: " + err.msg? err.msg : "");
+                    RA.MSG_TIP.showError("添加产品失败: " + (err.msg? err.msg : ""));
                 }
             });
         }

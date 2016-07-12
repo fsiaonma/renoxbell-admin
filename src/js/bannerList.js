@@ -27,6 +27,7 @@ $((function() {
                 rownumbers: true,
                 url: RA.API_SERVER + RA.API.GET_BANNER_LIST,
                 loadFilter: function(resp) {
+                    RA.NET.logoutFilter(resp);
                     var resObj = resp.data;
                     return resObj;
                 },
@@ -101,7 +102,7 @@ $((function() {
                                 RA.MSG_TIP.showSuccess("删除 banner 成功");
                             },
                             errorFn: function(err) {
-                                RA.MSG_TIP.showSuccess("删除 banner 失败: " + err.msg? err.msg : "");
+                                RA.MSG_TIP.showError("删除 banner 失败: " + (err.msg? err.msg : ""));
                             }
                         });
                     }
@@ -120,7 +121,7 @@ $((function() {
                     RA.MSG_TIP.showSuccess("添加 banner 成功");
                 },
                 errorFn: function(err) {
-                    RA.MSG_TIP.showError("添加 banner 失败: " + err.msg? err.msg : "");
+                    RA.MSG_TIP.showError("添加 banner 失败: " + (err.msg? err.msg : ""));
                 }
             });
         }

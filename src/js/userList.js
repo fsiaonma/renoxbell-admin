@@ -29,6 +29,7 @@ $((function() {
                 rownumbers: true,
                 url: RA.API_SERVER + RA.API.GET_USER_LIST,
                 loadFilter: function(resp) {
+                    RA.NET.logoutFilter(resp);
                     var resObj = resp.data;
                     return resObj;
                 },
@@ -137,7 +138,7 @@ $((function() {
                                 RA.MSG_TIP.showSuccess("删除用户成功");
                             },
                             errorFn: function(err) {
-                                RA.MSG_TIP.showSuccess("删除用户失败: " + err.msg? err.msg : "");
+                                RA.MSG_TIP.showError("删除用户失败: " + (err.msg? err.msg : ""));
                             }
                         });  
                     }
@@ -146,13 +147,13 @@ $((function() {
         },
 
         addUser: function() {
+            if ($("#userListPassword").val() != $("#userListPasswordConfirm").val()) {
+                RA.MSG_TIP.showError("新增用户失败: 2次密码不一致!");
+                return ;
+            }
             RA.NET.formSubmit({
                 formId: "userListAddOrEditForm",
                 type: "post",
-                params: {
-                    username: $("#userListUserName").textbox("getText"),
-
-                },
                 url: RA.API.ADD_USER,
                 successFn: function(resp) {
                     $("#projectListGrid").datagrid("reload");
@@ -160,7 +161,7 @@ $((function() {
                     RA.MSG_TIP.showSuccess("添加用户成功");
                 },
                 errorFn: function(err) {
-                    RA.MSG_TIP.showError("添加用户失败: " + err.msg? err.msg : "");
+                    RA.MSG_TIP.showError("添加用户失败: " + (err.msg? err.msg : ""));
                 }
             });
         },
@@ -176,7 +177,7 @@ $((function() {
                     RA.MSG_TIP.showSuccess("更新用户成功");
                 },
                 errorFn: function(err) {
-                    RA.MSG_TIP.showError("更新用户失败: " + err.msg? err.msg : "");
+                    RA.MSG_TIP.showError("更新用户失败: " + (err.msg? err.msg : ""));
                 }
             });
         }

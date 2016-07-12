@@ -1,6 +1,13 @@
 "use strict";
 
 RA.NET = {
+    logoutFilter: function(resp) {
+        if (resp.status == "logout") {
+            localStorage.setItem("currentUser", "");
+            window.location.href = window.location.origin + "/login.html";
+        }
+    },
+
     request: function(requestObj) {
         var type = requestObj.type;
         var url = requestObj.url;
@@ -27,12 +34,15 @@ RA.NET = {
                     } else {
                         console.log("successFn undefine");
                     }
+                } else if (resp.status == "logout") {
+                    localStorage.setItem("currentUser", "");
+                    window.location.href = window.location.origin + "/login.html";
                 } else {
                     if (typeof errorFn === "function") {
                         errorFn(resp);
                     } else {
                         console.log("errorFn undefine");
-                    }                     
+                    } 
                 }
             },
             error: function(err) {
@@ -68,7 +78,10 @@ RA.NET = {
                     if (typeof successFn === "function") {
                         successFn(resp);
                     }
-                } else {
+                } else if (resp.status == "logout") {
+                    localStorage.setItem("currentUser", "");
+                    window.location.href = window.location.origin + "/login.html";
+                }  else {
                     if (typeof errorFn === "function") {
                         errorFn(err);
                     }

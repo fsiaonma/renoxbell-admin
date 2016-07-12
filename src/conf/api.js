@@ -10,11 +10,11 @@ RA.API = {
 	UPDATE_NEWS: "saveNews",
 	DEL_NEWS: "deleteNews",
 
-	GET_VEDIO_LIST: "getVideosList",
+	GET_VEDIO_LIST: "getVideoList",
 	ADD_VEDIO: "saveVideo",
 	DEL_VEDIO: "deleteVideo",
 
-	GET_BANNER_LIST: "getBannersList",
+	GET_BANNER_LIST: "getBannerList",
 	ADD_BANNER: "saveBanner",
 	DEL_BANNER: "deleteBanner",
 

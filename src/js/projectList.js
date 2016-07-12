@@ -27,6 +27,7 @@ $((function() {
                 rownumbers: true,
                 url: RA.API_SERVER + RA.API.GET_PROJECT_LIST,
                 loadFilter: function(resp) {
+                    RA.NET.logoutFilter(resp);
                     var resObj = resp.data;
                     return resObj;
                 },
@@ -157,7 +158,7 @@ $((function() {
                                 RA.MSG_TIP.showSuccess("删除项目成功");
                             },
                             errorFn: function(err) {
-                                RA.MSG_TIP.showSuccess("删除项目失败: " + err.msg? err.msg : "");
+                                RA.MSG_TIP.showError("删除项目失败: " + (err.msg? err.msg : ""));
                             }
                         });
                     }
@@ -176,7 +177,7 @@ $((function() {
                     RA.MSG_TIP.showSuccess("添加项目成功");
                 },
                 errorFn: function(err) {
-                    RA.MSG_TIP.showError("添加项目失败: " + err.msg? err.msg : "");
+                    RA.MSG_TIP.showError("添加项目失败: " + (err.msg? err.msg : ""));
                 }
             });
         }

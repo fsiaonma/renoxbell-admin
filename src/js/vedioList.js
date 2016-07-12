@@ -27,6 +27,7 @@ $((function() {
                 rownumbers: true,
                 url: RA.API_SERVER + RA.API.GET_VEDIO_LIST,
                 loadFilter: function(resp) {
+                    RA.NET.logoutFilter(resp);
                     var resObj = resp.data;
                     return resObj;
                 },
@@ -124,7 +125,7 @@ $((function() {
                                 RA.MSG_TIP.showSuccess("删除视频成功");
                             },
                             errorFn: function(err) {
-                                RA.MSG_TIP.showSuccess("删除视频失败: " + err.msg? err.msg : "");
+                                RA.MSG_TIP.showError("删除视频失败: " + (err.msg? err.msg : ""));
                             }
                         });
                     }
@@ -143,7 +144,7 @@ $((function() {
                     RA.MSG_TIP.showSuccess("添加视频成功");
                 },
                 errorFn: function(err) {
-                    RA.MSG_TIP.showSuccess("添加视频失败: " + err.msg? err.msg : "");
+                    RA.MSG_TIP.showError("添加视频失败: " + (err.msg? err.msg : ""));
                 }
             });
         }

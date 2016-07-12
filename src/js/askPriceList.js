@@ -28,6 +28,7 @@ $((function() {
                 nowrap : false,
                 url: RA.API_SERVER + RA.API.GET_ASK_PRICE_LIST,
                 loadFilter: function(resp) {
+                    RA.NET.logoutFilter(resp);
                     var resObj = resp.data;
                     return resObj;
                 },
