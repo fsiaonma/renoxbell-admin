@@ -89,7 +89,7 @@ $((function() {
             $("#bannerListGrid").parent().on('click', '.bannerListDelBtn', function(event) {  
                 var rowDom = $(event.target).closest('tr');
                 var id = rowDom.find('[field=id]').text();
-                $.messager.confirm('删除确认', '确定要删除选中视频吗？', function(flag) {
+                $.messager.confirm('删除确认', '确定要删除选中 banner 吗？', function(flag) {
                     if (flag) {
                         RA.NET.request({
                             type: "post",

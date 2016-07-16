@@ -40,6 +40,8 @@ $((function() {
                     {field: 'id', title: 'id', width: 40, hidden: true, align: 'center'}, 
                     {field: "title", title: "新闻标题", width: 150, align:"center"},
                     {field: "titleEn", title: "新闻标题(英)", width: 150, align: "center"},
+                    {field: "desc", title: "新闻描述", width: 150, align:"center"},
+                    {field: "descEn", title: "新闻描述(英)", width: 150, align: "center"},
                     {field: "creator", title: "创建人", width: 150, align: "center"},
                     {field: "create_time", title: "创建时间", width: 250, align: "center"},
                     {field: "last_modify", title: "最后修改时间", width: 200, align: "center"},
@@ -105,6 +107,16 @@ $((function() {
                 width: 300,
                 multiline: true
             });
+
+            $("#newsListContent").textbox({
+                width: 300,
+                multiline: true
+            });
+
+            $("#newsListContentEn").textbox({
+                width: 300,
+                multiline: true
+            });
         },
 
         _bindEvent: function() {
@@ -113,8 +125,10 @@ $((function() {
                 var id = rowDom.find('[field=id]').text();
                 var newsTitle = rowDom.find('[field=title]').text();
                 var newsTitleEn = rowDom.find('[field=titleEn]').text();
-                var newsDesc = rowDom.find('[field=content]').text();
-                var newsDescEn = rowDom.find('[field=contentEn]').text();
+                var newsDesc = rowDom.find('[field=desc]').text();
+                var newsDescEn = rowDom.find('[field=descEn]').text();
+                var newsContent = rowDom.find('[field=content]').text();
+                var newsContentEn = rowDom.find('[field=contentEn]').text();
 
                 $("#newsListAddOrEditDialog").dialog("open");
 
@@ -122,7 +136,9 @@ $((function() {
                 $("#newsListTitle").textbox("setText", newsTitle);
                 $("#newsListTitleEn").textbox("setText", newsTitleEn); 
                 $("#newsListDesc").textbox("setText", newsDesc);
-                $("#newsListDescEn").textbox("setText", newsDescEn); 
+                $("#newsListDescEn").textbox("setText", newsDescEn);
+                $("#newsListContent").textbox("setText", newsContent);
+                $("#newsListContentEn").textbox("setText", newsContentEn);  
             });
 
             $("#newsListGrid").parent().on('click', '.newsListDelBtn', function(event) {  

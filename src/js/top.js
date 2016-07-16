@@ -5,7 +5,12 @@ $((function() {
         init: function() {
             RA.CLOCK.start("clockPanel");
 
-            $("#usernamePanel").html("欢迎您！" + localStorage.getItem("currentUser"));
+            if (localStorage.getItem("currentUser")) {
+                $("#usernamePanel").html("欢迎您！" + localStorage.getItem("currentUser"));
+            } else {
+                window.location.href = window.location.origin + "/login.html";
+                return ;
+            }
 
             $("#logoutBtn").linkbutton({   
                 iconCls: "icon-ra-logout", 

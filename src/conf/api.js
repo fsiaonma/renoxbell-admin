@@ -1,6 +1,7 @@
 "use strict";
 
-RA.API_SERVER = "http://10.100.137.74:8000/api/";
+// RA.API_SERVER = "http://10.100.137.74:8000/api/";
+RA.API_SERVER = "http://api.renoxbell.com/api/";
 
 RA.API = {
 	LOGOUT: "logout",

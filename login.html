@@ -28,28 +28,32 @@
           <table width="466" cellpadding="0" cellspacing="0">
             <tbody><tr>
               <td style="padding-top:30px;">
-        		    <form method="post">
-                      <table width="100%" cellpadding="0" cellspacing="0">
-                        <tbody><tr>
-                          <td align="right" height="27">用户名:</td>
-                          <td align="right" width="161">
-                            <input type="text" id="username" name="userCode" style="width:150px;height:20px">
-                          </td>
-                          <td align="center" height="29">
-                            <input id="loginSubmitBtn" name="submit" type="button" value="" class="submit">
-                          </td>
-                        </tr>
-                        <tr>
-                          <td align="right" height="27">密&nbsp;&nbsp;码:</td>
-                          <td align="right" width="161">
-                            <input type="password" id="password" name="userPass" style="width:150px;height:20px">
-                          </td>
-                          <td align="center" height="29">
-                            <input name="reset" type="reset" value="" class="reset">
-                          </td>
-                        </tr>
-                      </tbody></table>
-        	        </form>
+                <table width="100%" cellpadding="0" cellspacing="0">
+                  <tbody>
+                    <form id="loginForm" method="post" enctype="multipart/form-data"> 
+                    <tr>
+                      <td align="right" height="27" width="45%"><span style="margin-right: 20px; display: inline-block;">用户名:</span></td>
+                      <td align="left" width="55%">
+                        <input type="text" id="username" name="username" style="width:150px;height:20px">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="right" height="27"><span style="margin-right: 20px; display: inline-block;">密&nbsp;&nbsp;码:</span></td>
+                      <td align="left" width="161">
+                        <input type="password" id="password" name="password" style="width:150px;height:20px">
+                      </td>
+                    </tr>
+                    </form>
+                    <tr>
+                      <td align="right" height="50">
+                          <input id="loginSubmitBtn" name="submit" type="button" value="" class="submit" style="margin-right: 20px;">
+                      </td>
+                      <td align="left" width="161">
+                          <input id="resetBtn" name="reset" type="reset" value="" class="reset">
+                      </td>
+                    </tr>
+                  </tbody>
+        	      </table>  
               </td>
           </tr>
           </tbody></table>
@@ -76,6 +80,8 @@
 </body>
 <footer>
     <script type="text/javascript" src="./libs/easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="./libs/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="./libs/easyui/jqueryForm.js"></script>
     <script type="text/javascript" src="./ra.js"></script>
     <script type="text/javascript" src="./src/js/login.js"></script>
     <script type="text/javascript" src="./src/utils/loading/loading.js"></script>

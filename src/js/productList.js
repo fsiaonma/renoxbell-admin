@@ -42,6 +42,9 @@ $((function() {
                     {field: "nameEn", title: "产品名称(英)", width: 200, align: "center"},
                     {field: "category", title: "产品类别", width: 200, align:"center"},
                     {field: "categoryEn", title: "产品类别(英)", width: 200, align:"center"},
+                    {field: "spaces", title: "SPACES", width: 200, align:"center"},
+                    {field: "model", title: "MODEL", width: 200, align:"center"},
+                    {field: "nw", title: "N.W", width: 200, align:"center"},
                     {field: "desc", title: "产品描述", width: 200, align:"center"},
                     {field: "descEn", title: "产品描述(英)", width: 200, align:"center"},
                     {field: "image1", title: "轮播图片1路径", width: 200, align:"center"},
@@ -114,11 +117,29 @@ $((function() {
                 required: true
             });
 
+            $("#productListSpaces").textbox({
+                width: 300,
+                required: true,
+                prompt: "多个数值用英文逗号分隔"
+            });
+
+            $("#productListModel").textbox({
+                width: 300,
+                required: true,
+                prompt: "多个数值用英文逗号分隔"
+            });
+
+            $("#productListNW").textbox({
+                width: 300,
+                required: true,
+                prompt: "多个数值用英文逗号分隔"
+            });
+
             for (var i = 1; i < 5; ++i) {
                 $('#productListSlideImgFile' + i).filebox({    
                     width: 300,
                     required: true,
-                    buttonText: '选择图片', 
+                    buttonText: '选择图片',
                     buttonAlign: 'right' 
                 });
             }
@@ -152,7 +173,7 @@ $((function() {
             $("#productListGrid").parent().on('click', '.productListDelBtn', function(event) {  
                 var rowDom = $(event.target).closest('tr');
                 var id = rowDom.find('[field=id]').text();
-                $.messager.confirm('删除确认', '确定要删除选中视频吗？', function(flag) {
+                $.messager.confirm('删除确认', '确定要删除选中产品吗？', function(flag) {
                     if (flag) {
                         RA.NET.request({
                             type: "post",

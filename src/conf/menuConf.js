@@ -40,7 +40,7 @@ RA.menuConf = [{
 		href: "src/templates/productList.html"
 	}, {
 		id: "toProjectList",
-		title: "项目管理",
+		title: "工厂管理",
 		icon: "icon-ra-project",
 		href: "src/templates/projectList.html"
 	}]
