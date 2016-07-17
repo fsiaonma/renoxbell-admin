@@ -1,6 +1,10 @@
 "use strict";
 
 $((function() {
+    var imgFormat = function(val, row, index) {
+        return "<img src='" + val + "' style='width:50px; height:50px;' />";
+    }
+
     return {
         init: function() {
             this._initToolBar();
