@@ -140,7 +140,8 @@ $((function() {
                     width: 300,
                     required: true,
                     buttonText: '选择图片',
-                    buttonAlign: 'right' 
+                    buttonAlign: 'right',
+                    prompt: "建议分辨率 530*350, 大小 100 K"
                 });
             }
 
@@ -149,14 +150,16 @@ $((function() {
                     width: 300,
                     required: true,
                     buttonText: '选择图片', 
-                    buttonAlign: 'right' 
+                    buttonAlign: 'right',
+                    prompt: "建议分辨率 1100*510, 大小 100 K"
                 });
 
                 $('#productListDetailImgFileEn' + i).filebox({    
                     width: 300,
                     required: true,
                     buttonText: '选择图片', 
-                    buttonAlign: 'right' 
+                    buttonAlign: 'right',
+                    prompt: "建议分辨率 1100*510, 大小 100 K"
                 });
             }
 

@@ -40,9 +40,14 @@ RA.menuConf = [{
 		href: "src/templates/productList.html"
 	}, {
 		id: "toProjectList",
-		title: "工厂管理",
+		title: "项目管理",
 		icon: "icon-ra-project",
 		href: "src/templates/projectList.html"
+	}, {
+		id: "toFactoryList",
+		title: "工厂管理",
+		icon: "icon-ra-factory",
+		href: "src/templates/factoryList.html"
 	}]
 }, {
 	title: "用户维护",

@@ -32,6 +32,10 @@ RA.API = {
 	ADD_PROJECT: "saveProject",
 	DEL_PROJECT: "deleteProject",
 
+	GET_FACTORY_LIST: "getProjectList",
+	ADD_FACTORY: "saveProject",
+	DEL_FACTORY: "deleteProject",
+
 	GET_USER_LIST: "getUserList",
 	ADD_USER: "saveUser",
 	UPDATE_USER: "saveUser",
