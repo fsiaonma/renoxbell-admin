@@ -156,7 +156,7 @@ $((function() {
                 type: "post",
                 url: RA.API.ADD_USER,
                 successFn: function(resp) {
-                    $("#projectListGrid").datagrid("reload");
+                    $("#userListGrid").datagrid("reload");
                     $("#userListAddOrEditDialog").dialog("close");
                     RA.MSG_TIP.showSuccess("添加用户成功");
                 },
@@ -172,7 +172,7 @@ $((function() {
                 type: "post",
                 url: RA.API.UPDATE_USER,
                 successFn: function(resp) {
-                    $("#projectListGrid").datagrid("reload");
+                    $("#userListGrid").datagrid("reload");
                     $("#userListAddOrEditDialog").dialog("close");
                     RA.MSG_TIP.showSuccess("更新用户成功");
                 },

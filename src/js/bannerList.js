@@ -81,7 +81,8 @@ $((function() {
                 width: 300,
                 buttonText: '选择文件', 
                 buttonAlign: 'right',
-                required: true 
+                required: true,
+                prompt: "建议分辨率 1600*549, 大小 100 K"
             });
         },
 

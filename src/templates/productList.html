@@ -14,6 +14,7 @@
 	<div id="productListAddDialog" style="display: none;">
         <form id="productListAddForm" method="post" enctype="multipart/form-data">
             <div style="line-height: 70px; text-align: center;">
+                <input id="productId" name="id" style="display: none;"></input>
                 <table>
                     <tr style="line-height: 40px;">
                         <td width="30%" style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">产品名称：</span></td>
@@ -45,92 +46,16 @@
                     </tr>
 
                     <tr style="line-height: 40px;">
-                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">轮播照片1：</span></td>
+                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">轮播照片：</span></td>
                         <td style="text-align: left;">
-                            <input id="productListSlideImgFile1" name="image1" data-options="prompt: ''"/>
-                        </td>
-                    </tr>
-                    <tr style="line-height: 40px;">
-                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">轮播照片2：</span></td>
-                        <td style="text-align: left;">
-                            <input id="productListSlideImgFile2" name="image2" data-options="prompt: ''"/>
-                        </td>
-                    </tr>
-                    <tr style="line-height: 40px;">
-                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">轮播照片3：</span></td>
-                        <td style="text-align: left;">
-                            <input id="productListSlideImgFile3" name="image3" data-options="prompt: ''"/>
-                        </td>
-                    </tr>
-                    <tr style="line-height: 40px;">
-                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">轮播照片4：</span></td>
-                        <td style="text-align: left;">
-                            <input id="productListSlideImgFile4" name="image4" data-options="prompt: ''"/>
+                            <input id="productListSlideImgFiles" name=""/>
                         </td>
                     </tr>
 
                     <tr style="line-height: 40px;">
-                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">详情照片1：</span></td>
+                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">详情照片：</span></td>
                         <td style="text-align: left;">
-                            <input id="productListDetailImgFile1" name="detailImage1" data-options="prompt: ''"/>
-                        </td>
-                    </tr>
-                    <tr style="line-height: 40px;">
-                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">详情照片1(英)：</span></td>
-                        <td style="text-align: left;">
-                            <input id="productListDetailImgFileEn1" name="detailImageEn1" data-options="prompt: ''"/>
-                        </td>
-                    </tr>
-
-                    <tr style="line-height: 40px;">
-                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">详情照片2：</span></td>
-                        <td style="text-align: left;">
-                            <input id="productListDetailImgFile2" name="detailImage2" data-options="prompt: ''"/>
-                        </td>
-                    </tr>
-                    <tr style="line-height: 40px;">
-                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">详情照片2(英)：</span></td>
-                        <td style="text-align: left;">
-                            <input id="productListDetailImgFileEn2" name="detailImageEn2" data-options="prompt: ''"/>
-                        </td>
-                    </tr>
-
-                    <tr style="line-height: 40px;">
-                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">详情照片3：</span></td>
-                        <td style="text-align: left;">
-                            <input id="productListDetailImgFile3" name="detailImage3" data-options="prompt: ''"/>
-                        </td>
-                    </tr>
-                    <tr style="line-height: 40px;">
-                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">详情照片3(英)：</span></td>
-                        <td style="text-align: left;">
-                            <input id="productListDetailImgFileEn3" name="detailImageEn3" data-options="prompt: ''"/>
-                        </td>
-                    </tr>
-
-                    <tr style="line-height: 40px;">
-                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">详情照片4：</span></td>
-                        <td style="text-align: left;">
-                            <input id="productListDetailImgFile4" name="detailImage4" data-options="prompt: ''"/>
-                        </td>
-                    </tr>
-                    <tr style="line-height: 40px;">
-                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">详情照片4(英)：</span></td>
-                        <td style="text-align: left;">
-                            <input id="productListDetailImgFileEn4" name="detailImageEn4" data-options="prompt: ''"/>
-                        </td>
-                    </tr>
-
-                    <tr style="line-height: 40px;">
-                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">详情照片5：</span></td>
-                        <td style="text-align: left;">
-                            <input id="productListDetailImgFile5" name="detailImage5" data-options="prompt: ''"/>
-                        </td>
-                    </tr>
-                    <tr style="line-height: 40px;">
-                        <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">详情照片5(英)：</span></td>
-                        <td style="text-align: left;">
-                            <input id="productListDetailImgFileEn5" name="detailImageEn5" data-options="prompt: ''"/>
+                            <input id="productListDetailImgFiles" name=""/>
                         </td>
                     </tr>
 
