@@ -59,7 +59,7 @@ $((function() {
             var self = this;
 
             $("#userListAddOrEditDialog").dialog({
-                title: "新增用户", 
+                title: "用户", 
                 modal: true,
                 closed: true,
                 width: 500,
@@ -113,13 +113,15 @@ $((function() {
 
                 $("#userListAddOrEditDialog").dialog("open");
 
-                $("#userId").val(id);
-
                 $("#userListUserName").textbox({readonly: true});
                 $("#userListUserName").textbox("setText", userName);
                 
                 $("#userListNickName").textbox({readonly: true});
                 $("#userListNickName").textbox("setText", userNickName); 
+
+                $("#userId").val(id);
+                $("#userListUserName").textbox("setValue", userName);
+                $("#userListNickName").textbox("setValue", userNickName); 
             });
 
             $("#userListGrid").parent().on('click', '.userListDelBtn', function(event) {  

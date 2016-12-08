@@ -49,14 +49,14 @@ $((function() {
                 //     }
                 // });
 
-                RA.loading.show();
-                setTimeout(function() {
-                    RA.loading.hide();
-                    localStorage.setItem("currentUser", username);
-                    window.location.href = window.location.origin + "/index.html";
-                }, 1000);
+                // RA.loading.show();
+                // setTimeout(function() {
+                //     RA.loading.hide();
+                //     localStorage.setItem("currentUser", username);
+                //     window.location.href = window.location.origin + "/index.html";
+                // }, 1000);
 
-                return ;
+                // return ;
 
                 RA.loading.show();
                 $.ajax({

@@ -1,6 +1,10 @@
 "use strict";
 
 $((function() {
+    var imgFormat = function(val, row, index) {
+        return "<img src='" + val + "' style='width:50px; height:50px;' />";
+    }
+
     return {
         init: function() {
             this._initToolBar();
@@ -13,7 +17,7 @@ $((function() {
              $("#factoryListAddBtn").linkbutton({
                 width: 100,
                 onClick: function() {
-                    $("#factoryListAddDialog").dialog("open");
+                    $("#factoryListAddOrEditDialog").dialog("open");
                 }
             });
         },
@@ -46,11 +50,12 @@ $((function() {
                     {field: "ownerEn", title: "工厂所有者(英)", width: 150, align: "center"},
                     {field: "start_time", title: "开始日期", width: 150, align: "center"},
                     {field: "end_time", title: "结束日期", width: 150, align: "center"},
-                    {field: "image", title: "照片路径", width: 150, align: "center"},
+                    {field: "image", title: "照片路径", width: 150, align: "center", formatter: imgFormat},
                     {field: "desc", title: "工厂描述", width: 150, align: "center"},
                     {field: "descEn", title: "工厂描述(英)", width: 150, align: "center"},
                     {field: "_operate", title: "操作", align: "center", width: 150, formatter: function(val, row, index) {
                         var html = "";
+                        html += "<a href='javascript:;' class='factoryListEditBtn' style='margin: 10px;'>修改</a>";
                         html += "<a href='javascript:;' class='factoryListDelBtn' style='margin: 10px;'>删除</a>";
                         return html;  
                     }}
@@ -64,8 +69,8 @@ $((function() {
         _initDialog: function() {
             var self = this;
 
-            $("#factoryListAddDialog").dialog({
-                title: "新增工厂", 
+            $("#factoryListAddOrEditDialog").dialog({
+                title: "工厂", 
                 modal: true,
                 closed: true,
                 width: 500,
@@ -73,14 +78,18 @@ $((function() {
                 maximizable: true,
                 cache: false,
                 onBeforeClose: function() {
-                    $("#factoryListAddForm").form("clear");
+                    $("#factoryListAddOrEditForm").form("clear");
                 },
                 buttons: [{
                     text: "确认",
                     algin: "center",
                     iconCls: "icon-ok",
                     handler: function () {
-                        self.submitForm();
+                        if (!$("#factoryId").val()) {
+                            self.addFactory();
+                        } else {
+                            self.updateFactory();
+                        }
                     }
                 }]
             });
@@ -142,6 +151,51 @@ $((function() {
         },
 
         _bindEvent: function() {
+            $("#factoryListGrid").parent().on('click', '.factoryListEditBtn', function(event) {  
+                var rowDom = $(event.target).closest('tr');
+                var id = rowDom.find('[field=id]').text();
+
+                var factoryTitle = rowDom.find('[field=title]').text();
+                var factoryTitleEn = rowDom.find('[field=titleEn]').text();
+                var factoryAddress = rowDom.find('[field=address]').text();
+                var factoryAddressEn = rowDom.find('[field=addressEn]').text();
+                var factoryOwner = rowDom.find('[field=owner]').text();
+                var factoryOwnerEn = rowDom.find('[field=ownerEn]').text();
+                var factoryStartTime = rowDom.find('[field=start_time]').text();
+                var factoryEndTime = rowDom.find('[field=end_time]').text();
+                var factoryDesc = rowDom.find('[field=desc]').text();
+                var factoryDescEn = rowDom.find('[field=descEn]').text();
+
+                $("#factoryListAddOrEditDialog").dialog("open");
+
+                $("#factoryListName").textbox("setText", factoryTitle);
+                $("#factoryListNameEn").textbox("setText", factoryTitleEn); 
+                $("#factoryListPlace").textbox("setText", factoryAddress);
+                $("#factoryListPlaceEn").textbox("setText", factoryAddressEn);
+                $("#factoryListBelong").textbox("setText", factoryOwner);
+                $("#factoryListBelongEn").textbox("setText", factoryOwnerEn);
+                $("#factoryListStartDate").textbox("setText", factoryStartTime);
+                $("#factoryListEndDate").textbox("setText", factoryEndTime);
+                $("#factoryListDesc").textbox("setText", factoryDesc);
+                $("#factoryListDescEn").textbox("setText", factoryDescEn);
+
+                $("#factoryId").val(id);
+                $("#factoryListName").textbox("setValue", factoryTitle);
+                $("#factoryListNameEn").textbox("setValue", factoryTitleEn); 
+                $("#factoryListPlace").textbox("setValue", factoryAddress);
+                $("#factoryListPlaceEn").textbox("setValue", factoryAddressEn);
+                $("#factoryListBelong").textbox("setValue", factoryOwner);
+                $("#factoryListBelongEn").textbox("setValue", factoryOwnerEn);
+                $("#factoryListStartDate").textbox("setValue", factoryStartTime);
+                $("#factoryListEndDate").textbox("setValue", factoryEndTime);
+                $("#factoryListDesc").textbox("setValue", factoryDesc);
+                $("#factoryListDescEn").textbox("setValue", factoryDescEn);
+
+                $("#factoryListImgFile").filebox({
+                    required: false
+                });  
+            });
+
             $("#factoryListGrid").parent().on('click', '.factoryListDelBtn', function(event) {  
                 var rowDom = $(event.target).closest('tr');
                 var id = rowDom.find('[field=id]').text();
@@ -166,18 +220,34 @@ $((function() {
             });
         },
 
-        submitForm: function() {
+        addFactory: function() {
             RA.NET.formSubmit({
-                formId: "factoryListAddForm",
+                formId: "factoryListAddOrEditForm",
                 type: "post",
                 url: RA.API.ADD_FACTORY,
                 successFn: function(resp) {
                     $("#factoryListGrid").datagrid("reload");
-                    $("#factoryListAddDialog").dialog("close");
+                    $("#factoryListAddOrEditDialog").dialog("close");
                     RA.MSG_TIP.showSuccess("添加工厂成功");
                 },
                 errorFn: function(err) {
                     RA.MSG_TIP.showError("添加工厂失败: " + (err.msg? err.msg : ""));
+                }
+            });
+        },
+
+        updateFactory: function() {
+            RA.NET.formSubmit({
+                formId: "factoryListAddOrEditForm",
+                type: "post",
+                url: RA.API.UPDATE_FACTORY,
+                successFn: function(resp) {
+                    $("#factoryListGrid").datagrid("reload");
+                    $("#factoryListAddOrEditDialog").dialog("close");
+                    RA.MSG_TIP.showSuccess("修改工厂成功");
+                },
+                errorFn: function(err) {
+                    RA.MSG_TIP.showError("修改工厂失败: " + (err.msg? err.msg : ""));
                 }
             });
         }

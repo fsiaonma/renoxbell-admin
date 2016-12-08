@@ -11,9 +11,10 @@
     	</div>
     </div>
 	<table id="bannerListGrid" style="width: 100%;height: 100%"></table>
-	<div id="bannerListAddDialog" style="display: none;">
-        <form id="bannerListAddForm" method="post" enctype="multipart/form-data">
+	<div id="bannerListAddOrEditDialog" style="display: none;">
+        <form id="bannerListAddOrEditForm" method="post" enctype="multipart/form-data">
             <div style="line-height: 70px; text-align: center;">
+                <input id="bannerId" name="id" style="display: none;"></input>
                 <table>
                     <tr style="line-height: 40px;">
                         <td style="text-align: right;"><span style="vertical-align: middle; margin-right: 5px;">选择图片：</span></td>

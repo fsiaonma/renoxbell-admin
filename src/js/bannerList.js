@@ -1,6 +1,10 @@
 "use strict";
 
 $((function() {
+    var imgFormat = function(val, row, index) {
+        return "<img src='" + val + "' style='width:50px; height:50px;' />";
+    }
+
     return {
         init: function() {
             this._initToolBar();
@@ -13,7 +17,7 @@ $((function() {
              $("#bannerListAddBtn").linkbutton({
                 width: 100,
                 onClick: function() {
-                    $("#bannerListAddDialog").dialog("open");
+                    $("#bannerListAddOrEditDialog").dialog("open");
                 }
             });
         },
@@ -40,9 +44,10 @@ $((function() {
                     {field: 'id', title: 'id', width: 40, hidden: true, align: 'center'}, 
                     {field: "filename", title: "滚动图片名称", width: 150, align:"center"},
                     {field: "create_time", title: "创建时间", width: 150, align: "center"},
-                    {field: "image", title: "滚动图片路径", width: 150, align: "center"},
+                    {field: "image", title: "滚动图片路径", width: 150, align: "center", formatter: imgFormat},
                     {field: "_operate", title: "操作", align: "center", width: 150, formatter: function(val, row, index) {
                         var html = "";
+                        html += "<a href='javascript:;' class='bannerListEditBtn' style='margin: 10px;'>修改</a>";
                         html += "<a href='javascript:;' class='bannerListDelBtn' style='margin: 10px;'>删除</a>";
                         return html;  
                     }}
@@ -56,8 +61,8 @@ $((function() {
         _initDialog: function() {
             var self = this;
 
-            $("#bannerListAddDialog").dialog({
-                title: "图片上传", 
+            $("#bannerListAddOrEditDialog").dialog({
+                title: "banner", 
                 modal: true,
                 closed: true,
                 width: 400,
@@ -65,14 +70,18 @@ $((function() {
                 maximizable: true,
                 cache: false,
                 onBeforeClose: function() {
-                    $("#bannerListAddForm").form("clear");
+                    $("#bannerListAddOrEditForm").form("clear");
                 },
                 buttons: [{
                     text: "确认",
                     algin: "center",
                     iconCls: "icon-ok",
                     handler: function () {
-                        self.submitForm();
+                        if (!$("#bannerId").val()) {
+                            self.addBanner();
+                        } else {
+                            self.updateBanner();
+                        }
                     }
                 }]
             });
@@ -87,6 +96,13 @@ $((function() {
         },
 
         _bindEvent: function() {
+            $("#bannerListGrid").parent().on('click', '.bannerListEditBtn', function(event) {  
+                var rowDom = $(event.target).closest('tr');
+                var id = rowDom.find('[field=id]').text();
+                $("#bannerListAddOrEditDialog").dialog("open");
+                $("#bannerId").val(id);
+            });
+
             $("#bannerListGrid").parent().on('click', '.bannerListDelBtn', function(event) {  
                 var rowDom = $(event.target).closest('tr');
                 var id = rowDom.find('[field=id]').text();
@@ -111,18 +127,34 @@ $((function() {
             });
         },
 
-        submitForm: function() {
+        addBanner: function() {
             RA.NET.formSubmit({
-                formId: "bannerListAddForm",
+                formId: "bannerListAddOrEditForm",
                 type: "post",
                 url: RA.API.ADD_BANNER,
                 successFn: function(resp) {
                     $("#bannerListGrid").datagrid("reload");
-                    $("#bannerListAddDialog").dialog("close");
+                    $("#bannerListAddOrEditDialog").dialog("close");
                     RA.MSG_TIP.showSuccess("添加 banner 成功");
                 },
                 errorFn: function(err) {
                     RA.MSG_TIP.showError("添加 banner 失败: " + (err.msg? err.msg : ""));
+                }
+            });
+        },
+
+        updateBanner: function() {
+            RA.NET.formSubmit({
+                formId: "bannerListAddOrEditForm",
+                type: "post",
+                url: RA.API.UPDATE_BANNER,
+                successFn: function(resp) {
+                    $("#bannerListGrid").datagrid("reload");
+                    $("#bannerListAddOrEditDialog").dialog("close");
+                    RA.MSG_TIP.showSuccess("修改 banner 成功");
+                },
+                errorFn: function(err) {
+                    RA.MSG_TIP.showError("修改 banner 失败: " + (err.msg? err.msg : ""));
                 }
             });
         }

@@ -52,8 +52,8 @@ $((function() {
                     {field: 'id', title: 'id', width: 40, hidden: true, align: 'center'}, 
                     {field: "title", title: "新闻标题", width: 150, align:"center"},
                     {field: "titleEn", title: "新闻标题(英)", width: 150, align: "center"},
-                    {field: "", title: "封面图片", width: 200, align:"center", formatter: imgFormat},
-                    {field: "", title: "详情图片", width: 200, align:"center", formatter: imgFormat},
+                    {field: "bannerImage", title: "封面图片", width: 200, align:"center", formatter: imgFormat},
+                    {field: "detailImage", title: "详情图片", width: 200, align:"center", formatter: imgFormat},
                     {field: "desc", title: "新闻描述", width: 150, align:"center"},
                     {field: "descEn", title: "新闻描述(英)", width: 150, align: "center"},
                     {field: "creator", title: "创建人", width: 150, align: "center"},
@@ -63,9 +63,14 @@ $((function() {
                     {field: "contentEn", title: "内容(英)", width: 200, align: "center"},
                     {field: "_operate", title: "操作", align: "center", width: 200, formatter: function(val, row, index) {
                         var html = "";
+                        if (row.status == "offline") {
+                            html += "<a href='javascript:;' class='newsListLineBtn' style='margin: 10px;'>上线</a>";
+                            html += "<span style='margin: 10px; color: #888;'>下线</span>";
+                        } else {
+                            html += "<span style='margin: 10px; color: #888;'>上线</span>";
+                            html += "<a href='javascript:;' class='newsListOffLineBtn' style='margin: 10px;'>下线</a>";
+                        }
                         html += "<a href='javascript:;' class='newsListEditBtn' style='margin: 10px;'>修改</a>";
-                        html += "<a href='javascript:;' class='newsListLineBtn' style='margin: 10px;'>上线</a>";
-                        html += "<a href='javascript:;' class='newsListOffLineBtn' style='margin: 10px;'>下线</a>";
                         html += "<a href='javascript:;' class='newsListDelBtn' style='margin: 10px;'>删除</a>";
                         return html;  
                     }}
@@ -80,7 +85,7 @@ $((function() {
             var self = this;
 
             $("#newsListAddOrEditDialog").dialog({
-                title: "新闻发布", 
+                title: "新闻", 
                 modal: true,
                 closed: true,
                 width: 500,
@@ -95,7 +100,7 @@ $((function() {
                     algin: "center",
                     iconCls: "icon-ok",
                     handler: function () {
-                        if (!$("#userId").val()) {
+                        if (!$("#newsId").val()) {
                             self.addNews();
                         } else {
                             self.updateNews();
@@ -164,13 +169,20 @@ $((function() {
 
                 $("#newsListAddOrEditDialog").dialog("open");
 
-                $("#newsId").val(id);
                 $("#newsListTitle").textbox("setText", newsTitle);
                 $("#newsListTitleEn").textbox("setText", newsTitleEn); 
                 $("#newsListDesc").textbox("setText", newsDesc);
                 $("#newsListDescEn").textbox("setText", newsDescEn);
                 $("#newsListContent").textbox("setText", newsContent);
                 $("#newsListContentEn").textbox("setText", newsContentEn);  
+
+                $("#newsId").val(id);
+                $("#newsListTitle").textbox("setValue", newsTitle);
+                $("#newsListTitleEn").textbox("setValue", newsTitleEn); 
+                $("#newsListDesc").textbox("setValue", newsDesc);
+                $("#newsListDescEn").textbox("setValue", newsDescEn);
+                $("#newsListContent").textbox("setValue", newsContent);
+                $("#newsListContentEn").textbox("setValue", newsContentEn);  
 
                 $("#newsListImg").filebox({
                     required: false
@@ -188,7 +200,8 @@ $((function() {
                     type: "post",
                     url: RA.API.NEWS_LINE,
                     params: {
-                        id: id
+                        id: id,
+                        status: "online"
                     },
                     successFn: function(resp) {
                         $("#newsListGrid").datagrid("reload");
@@ -207,7 +220,8 @@ $((function() {
                     type: "post",
                     url: RA.API.NEWS_OFF_LINE,
                     params: {
-                        id: id
+                        id: id,
+                        status: "offline"
                     },
                     successFn: function(resp) {
                         $("#newsListGrid").datagrid("reload");

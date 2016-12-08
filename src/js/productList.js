@@ -70,9 +70,14 @@ $((function() {
                     {field: "detailImage5", title: "详情图片5", width: 200, align:"center", formatter: imgFormat},
                     {field: "_operate", title: "操作", align: "center", width: 200, formatter: function(val, row, index) {
                         var html = "";
+                        if (row.status == "offline") {
+                            html += "<a href='javascript:;' class='productListGroundingBtn' style='margin: 10px;'>上架</a>";
+                            html += "<span style='margin: 10px; color: #888;'>下架</span>";
+                        } else {
+                            html += "<span style='margin: 10px; color: #888;'>上架</span>";
+                            html += "<a href='javascript:;' class='productListUndercarriageBtn' style='margin: 10px;'>下架</a>";
+                        }
                         html += "<a href='javascript:;' class='productListEditBtn' style='margin: 10px;'>修改</a>";
-                        html += "<a href='javascript:;' class='productListGroundingBtn' style='margin: 10px;'>上架</a>";
-                        html += "<a href='javascript:;' class='productListUndercarriageBtn' style='margin: 10px;'>下架</a>";
                         html += "<a href='javascript:;' class='productListDelBtn' style='margin: 10px;'>删除</a>";
                         return html;  
                     }}
@@ -87,7 +92,7 @@ $((function() {
             var self = this;
 
             $("#productListAddDialog").dialog({
-                title: "新增产品", 
+                title: "产品", 
                 modal: true,
                 closed: true,
                 width: 500,
@@ -191,7 +196,6 @@ $((function() {
                 var desc = rowDom.find('[field=desc]').text();
                 var descEn = rowDom.find('[field=descEn]').text();
 
-                $("#productId").val(id);
                 $("#productListName").textbox("setText", name);
                 $("#productListNameEn").textbox("setText", nameEn);
                 $("#productListType").textbox("setText", category);
@@ -199,6 +203,15 @@ $((function() {
                 $("#productListSpaces").textbox("setText", spaces);
                 $("#productListModel").textbox("setText", model);
                 $("#productListNW").textbox("setText", nw);
+
+                $("#productId").val(id);
+                $("#productListName").textbox("setValue", name);
+                $("#productListNameEn").textbox("setValue", nameEn);
+                $("#productListType").textbox("setValue", category);
+                $("#productListTypeEn").textbox("setValue", categoryEn);
+                $("#productListSpaces").textbox("setValue", spaces);
+                $("#productListModel").textbox("setValue", model);
+                $("#productListNW").textbox("setValue", nw);
 
                 $("#productListSlideImgFiles").filebox({
                     required: false
@@ -221,7 +234,8 @@ $((function() {
                     type: "post",
                     url: RA.API.GROUDING_PRODUCT,
                     params: {
-                        id: id
+                        id: id,
+                        status: "online"
                     },
                     successFn: function(resp) {
                         $("#productListGrid").datagrid("reload");
@@ -240,7 +254,8 @@ $((function() {
                     type: "post",
                     url: RA.API.UNDERCARRIAGE_PRODUCT,
                     params: {
-                        id: id
+                        id: id,
+                        status: "offline"
                     },
                     successFn: function(resp) {
                         $("#productListGrid").datagrid("reload");

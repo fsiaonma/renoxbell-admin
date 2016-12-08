@@ -13,7 +13,7 @@ $((function() {
              $("#vedioListAddBtn").linkbutton({
                 width: 100,
                 onClick: function() {
-                    $("#vedioListAddDialog").dialog("open");
+                    $("#vedioListAddOrEditDialog").dialog("open");
                 }
             });
         },
@@ -46,6 +46,7 @@ $((function() {
                     {field: "contentEn", title: "视频描述(英)", width: 200, align: "center"},
                     {field: "_operate", title: "操作", align: "center", width: 150, formatter: function(val, row, index) {
                         var html = "";
+                        html += "<a href='javascript:;' class='vedioListEditBtn' style='margin: 10px;'>修改</a>";
                         html += "<a href='javascript:;' class='vedioListDelBtn' style='margin: 10px;'>删除</a>";
                         return html;  
                     }}
@@ -59,8 +60,8 @@ $((function() {
         _initDialog: function() {
             var self = this;
 
-            $("#vedioListAddDialog").dialog({
-                title: "视频上传", 
+            $("#vedioListAddOrEditDialog").dialog({
+                title: "视频", 
                 modal: true,
                 closed: true,
                 width: 500,
@@ -68,14 +69,18 @@ $((function() {
                 maximizable: true,
                 cache: false,
                 onBeforeClose: function() {
-                    $("#vedioListAddForm").form("clear");
+                    $("#vedioListAddOrEditForm").form("clear");
                 },
                 buttons: [{
                     text: "确认",
                     algin: "center",
                     iconCls: "icon-ok",
                     handler: function () {
-                        self.submitForm();
+                        if (!$("#vedioId").val()) {
+                            self.addVedio();
+                        } else {
+                            self.updateVedio();
+                        }
                     }
                 }]
             });
@@ -109,6 +114,32 @@ $((function() {
         },
 
         _bindEvent: function() {
+            $("#vedioListGrid").parent().on('click', '.vedioListEditBtn', function(event) {  
+                var rowDom = $(event.target).closest('tr');
+                var id = rowDom.find('[field=id]').text();
+                var vedioTitle = rowDom.find('[field=title]').text();
+                var vedioTitleEn = rowDom.find('[field=titleEn]').text();
+                var vedioContent = rowDom.find('[field=content]').text();
+                var vedioContentEn = rowDom.find('[field=contentEn]').text();
+
+                $("#vedioListAddOrEditDialog").dialog("open");
+
+                $("#vedioListTitle").textbox("setText", vedioTitle);
+                $("#vedioListTitleEn").textbox("setText", vedioTitleEn); 
+                $("#vedioListDesc").textbox("setText", vedioContent);
+                $("#vedioListDescEn").textbox("setText", vedioContentEn);
+
+                $("#vedioId").val(id);
+                $("#vedioListTitle").textbox("setValue", vedioTitle);
+                $("#vedioListTitleEn").textbox("setValue", vedioTitleEn); 
+                $("#vedioListDesc").textbox("setValue", vedioContent);
+                $("#vedioListDescEn").textbox("setValue", vedioContentEn);
+
+                $("#vedioListVedioFile").filebox({
+                    required: false
+                });
+            });
+
             $("#vedioListGrid").parent().on('click', '.vedioListDelBtn', function(event) {  
                 var rowDom = $(event.target).closest('tr');
                 var id = rowDom.find('[field=id]').text();
@@ -133,18 +164,34 @@ $((function() {
             });
         },
 
-        submitForm: function() {
+        addVedio: function() {
             RA.NET.formSubmit({
-                formId: "vedioListAddForm",
+                formId: "vedioListAddOrEditForm",
                 type: "post",
                 url: RA.API.ADD_VEDIO,
                 successFn: function(resp) {
                     $("#vedioListGrid").datagrid("reload");
-                    $("#vedioListAddDialog").dialog("close");
+                    $("#vedioListAddOrEditDialog").dialog("close");
                     RA.MSG_TIP.showSuccess("添加视频成功");
                 },
                 errorFn: function(err) {
                     RA.MSG_TIP.showError("添加视频失败: " + (err.msg? err.msg : ""));
+                }
+            });
+        },
+
+        updateVedio: function() {
+            RA.NET.formSubmit({
+                formId: "vedioListAddOrEditForm",
+                type: "post",
+                url: RA.API.UPDATE_VEDIO,
+                successFn: function(resp) {
+                    $("#vedioListGrid").datagrid("reload");
+                    $("#vedioListAddOrEditDialog").dialog("close");
+                    RA.MSG_TIP.showSuccess("修改视频成功");
+                },
+                errorFn: function(err) {
+                    RA.MSG_TIP.showError("修改视频失败: " + (err.msg? err.msg : ""));
                 }
             });
         }
